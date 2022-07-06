@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tyrese Consistency Calculator</title>
+   <meta charset="UTF-8"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  font-family: "Poppins";
+}
+
+
+
+body{
+
+
+   background-color: black;
+
+}
+
+
+.maindiv{
+     
+	 background-color: white;
+	 border: 2px solid #46ff00;
+
+	 box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+	 border-radius: 17px;
+	 
+     width: 100%;
+	 
+	 margin-right: auto;
+	 
+	 margin-left: auto;
+	 
+	 text-align: center;
+
+}
+
+input, label, button{
+
+
+      display: block;
+	  
+      margin-right: auto;
+	 
+	 margin-left: auto;
+	 
+	 text-align: center;
+}
+			 
+h2{
+
+  color: white;
+}
+
+
+.none{
+
+ border: none;
+ 
+
+}
+
+button{
+
+   height: 30px;
+   width: 50vw;
+   border-radius: 17px;
+   
+   font-size: 15px;
+   border: none;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+button:hover{
+
+	  background-color: black;
+}
+
+
+input{
+
+	border-radius: 17px;
+	outline: none;
+	border: none;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+	margin-bottom: 10px;
+}
+
+#capital, #num1, #num2{
+
+
+	  border: 1px solid black;
+}
+
+.print{
+
+   height: 30px;
+   width: 50vw;
+   
+   font-size: 15px;
+  
+}
+
+.greenh{
+
+    background-color: red;
+
+}
+
+
+		
+#status{
+    background-color: #46ff00;
+	
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+   
+}	
+
+label{
+
+   margin-top: 2px;
+
+}	
+
+
+#overallloss{
+
+       color: #ff3200;
+	  
+       background-color: #011926;
+
+}
+
+#overallprofit{
+
+    color: #46ff00;
+	
+     background-color: #011926;
+	 
+}
+
+#ac{
+
+	 font-weight: bold;
+
+}
+
+
+
+</style>
+
+<div >
+
+<div  class="maindiv">
+
+
+<header id="status"  onclick="javascript:myFunction();">
+
+<h2>Tyrese Trading Consistency Calculator</h2>
+
+</header id="statyus">
+
+<p id="datee">Date</p>
+
+<label><b>Capital </b></label>
+<input name="capital" type="number" size=10 id='capital' placeholder="Enter amount" />
+
+
+<label><b>Winning Amount </b></label>
+<input  type="number" size=10 id='num2' placeholder="Enter amount won" />
+
+
+<label><b>Losing Amount </b></label>
+<input type="number" size=10 id='num1' placeholder="Enter amount lost" />
+
+
+<br>
+<button onclick="showresult('3')" style="color: white; background-color:#46ff00;"><b>I Won</b></button>
+<br>
+<button onclick="showresult('4')" style="color: white; background-color:red;"><b>I Lost</b></button>
+<br>
+
+<label><b>Accuracy </b></label>
+<input type="text" class="none" size=10 id='ac' placeholder="100%" readonly />
+
+
+<label><b>Number Of Trades </b></label>
+<input type="text" size=10 class="none" id='trades' placeholder="0" readonly />
+
+<label><b>Number Of Wins </b></label>
+<input type="text" size=10 id='wins' class="none" placeholder="0" readonly />
+
+<label><b>Number Of Losses </b></label>
+<input type="text" size=10 id='losses'  class="none" placeholder="0" readonly />
+
+
+<label><b>Overall Profit/Loss</b></label>
+<input type="text" size=10 id='overallprofit' class="none" placeholder="0" readonly />
+
+<br>
+
+
+
+ </div>
+
+</body>
+
+      <script>
+	  
+	  var overallprofit = 0;
+	  
+	  var overallloss = 0;
+	  
+	  
+	  
+	  var trades = 0;
+	  var wins = 0;
+	  var losses = 0;
+	  
+	  var n1;
+	  
+	  var n2;
+	  
+	  var capital;
+	  
+	  
+	  var acc = 0;
+	  
+	  var ac1 = 1;
+	  
+	  var ac2 = 1;
+	  
+	  var total = 1;
+	  
+	  
+	var today = new Date();
+
+    var datee = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	  
+	  
+	        function showresult(choise) {
+			
+     n1=parseFloat(document.getElementById('num1').value);
+    n2=parseFloat(document.getElementById('num2').value);
+      capital =parseFloat(document.getElementById('capital').value);
+
+
+var c=choise;
+
+switch(c)
+	{
+		
+	case '3':
+		capital+=n2;
+		
+		ac1+=1;
+		
+		total+=1;
+		
+		trades+=1;
+		wins+=1;
+		
+		
+		overallprofit+=n2;
+		
+		if(overallprofit >= 0){
+		
+		
+		document.getElementById("overallprofit").style.color = "#46ff00";
+		
+		document.getElementById('overallprofit').value= "+"+overallprofit;
+		
+	     document.getElementById("status").style.background = "#46ff00";
+		
+		}
+		
+		
+			if(overallprofit <= 0)
+		{
+		
+		document.getElementById("overallprofit").style.color = "#e85a44";
+		
+          document.getElementById('overallprofit').value= overallprofit;
+		  
+		   document.getElementById("status").style.background = "red";
+		
+		}
+		
+		
+		
+		if(capital < 0)
+		{
+		
+		 capital = 0;
+		 
+		}
+		
+		
+		
+		break;
+		
+    case '4':
+		capital-=n1;
+		
+		total+=1;
+		
+		trades+=1;
+		losses+=1;
+		
+	
+		overallprofit-=n1;
+		
+		if(overallprofit >= 0){
+		
+		
+		document.getElementById("overallprofit").style.color = "#46ff00";
+		
+		document.getElementById('overallprofit').value= "+"+overallprofit;
+		
+	    document.getElementById("status").style.background = "#46ff00";
+		
+		
+		}
+		
+		
+			if(overallprofit <= 0)
+		{
+		
+		document.getElementById("overallprofit").style.color =  "#e85a44";
+		
+          document.getElementById('overallprofit').value= overallprofit;
+		  
+		   document.getElementById("status").style.background = "red";
+		  
+		
+		}
+	
+		
+		if(capital < 0)
+		{
+		
+		 capital = 0;
+		 
+		}
+		
+		
+		break;
+			
+	
+	default:
+		break;
+			
+
+	}
+	
+	
+	acc = ac1/total*100 ;
+	
+	var ac = acc.toFixed(0);
+	
+	
+	
+document.getElementById('capital').value= capital;
+
+
+document.getElementById('ac').value= ac+"%";
+
+document.getElementById('trades').value= trades;
+document.getElementById('wins').value= wins;
+document.getElementById('losses').value= losses;
+
+
+
+
+
+
+}
+	  
+	  document.getElementById('datee').innerHTML= datee;
+	  
+	  
+	
+function myFunction() { 
+
+if (overallprofit < overallloss) {
+  if (document.getElementById("status").style.background == "red") {
+    document.getElementById("status").style.background = "red";
+} else{
+    document.getElementById("status").style.background = "red";
+}
+}
+
+
+
+
+}
+
+
+
+
+ document.getElementById("num1").style.color = "red";
+  document.getElementById("num2").style.color = "green";
+ 
+
+
+	  
+	  </script>
+	  
+  
+	
+	
+</body>	
+	
+
+
+</html>
